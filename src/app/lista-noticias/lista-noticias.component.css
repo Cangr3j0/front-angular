@@ -1,0 +1,18 @@
+.card{
+    background-color: rgba(17,17,17,0.75);
+    color: #fff;
+    padding: 20px;
+}
+.imagen_titulo{
+    width: 100px;
+    transition:width 2s;
+  }
+  .imagen_titulo:hover{
+    width: 300px;
+  }
+  .text-end{
+    float: right;
+  }
+  .contenido{
+    font-size: 12px;
+  }
