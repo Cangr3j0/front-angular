@@ -1,0 +1,16 @@
+.panel-login{
+    position: relative;
+    background: #f9f9f9;
+    padding: 3.474337872213077rem 5.985335926978902rem 5.985335926978902rem;
+    color: #111;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}
+.header{
+    color: red;
+    margin-bottom: 5rem;
+}
