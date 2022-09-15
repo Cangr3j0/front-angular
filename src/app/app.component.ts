@@ -5,13 +5,15 @@ import { Invocador, InvocadorService } from './invocador.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { SocialAuthService, SocialUser } from "@abacritt/angularx-social-login";
 import { FacebookLoginProvider } from "@abacritt/angularx-social-login";
+import { AppService } from './app.service';
+import { Usuario } from './clases/usuario';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  
+  usuario:string;
   user: SocialUser;
   loggedIn: boolean;
   title = 'lolweb';
@@ -27,7 +29,11 @@ export class AppComponent implements OnInit {
   public mensajeError : string;
   public test:string="asd";
   constructor(public invocadorService: InvocadorService,private route: ActivatedRoute,
-    private authService: SocialAuthService) {
+    private authService: SocialAuthService,private app:AppService) {
+      this.app.authenticate(undefined,undefined);
+  }
+  authenticated() { 
+    return this.app.isUserLoggedIn; 
   }
 
   ngOnInit() {
@@ -39,6 +45,10 @@ export class AppComponent implements OnInit {
       this.user = user;
       this.loggedIn = (user != null);
     });
+    if(this.authenticated){
+      this.usuario=sessionStorage.getItem('username');
+      console.log(this.app.getUsuario());
+    }
   }
   buscar(invocadortexto: HTMLInputElement) {
     if (invocadortexto.value != "") {

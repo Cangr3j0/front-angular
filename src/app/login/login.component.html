@@ -1,9 +1,72 @@
 <div class="row justify-content-center">
     <div class="col-12 col-xl-4">
-    <div class="justify-content-center"><div class="panel-login"><h5 class="header mb-5">Iniciar sesión</h5><label for="exampleFormControlInput1" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com"><label for="exampleFormControlInput1" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com"></div></div>
+    <div class="justify-content-center"><div class="panel-login"><h5 class="header mb-5">Iniciar sesión</h5>
+      <form role="form" (submit)="login()">
+      <label for="username" class="form-label">Username</label>
+        <input type="username" class="form-control" id="username" name="username" placeholder="Nombre de usuario"
+        [(ngModel)]="credentials.username"/>
+      <label for="password" class="form-label">Contraseña</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="contraseña"
+        [(ngModel)]="credentials.password"/>
+        <div *ngIf="!user" class="text-center">
+        <div class="text-center d-flex justify-content-center mt-5">
+          <p class="card-text">Iniciar sesión con </p>
+        </div>
+        <div class="text-center d-flex justify-content-center">
+          <div class="card-block"><asl-google-signin-button class="mx-25 my-25 card-block"></asl-google-signin-button></div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+
         <div id="my-signin2"></div>
     </div>
 </div>
+
+<!--Social Login-->
+
+
+<div class="row">
+    <div class="col-xl-12 bg-dark h-auto fondo my-5">
+      <router-outlet></router-outlet>
+      <asl-google-signin-button type='icon' size='medium'></asl-google-signin-button>
+      <div class="jumbotron bg-transparent text-center fondo">
+        <div *ngIf="!user" class="card text-center">
+          <h6 class="card-header">Social Login Demo</h6>
+          <div class="card-block">
+            <h4 class="card-title">Not signed in</h4>
+            <p class="card-text">Sign in with</p>
+          </div>
+          <div class="card-block d-flex justify-content-center">
+            <asl-google-signin-button class="mx-1"></asl-google-signin-button>
+            <button
+              class="btn btn-social-icon btn-facebook mx-1"
+              (click)="signInWithFB()"
+            >
+              <span class="fab fa-facebook"></span>
+            </button>
+          </div>
+        </div>
+        <div *ngIf="user" class="card text-center">
+          <h6 class="card-header">Social Login Demo</h6>
+          <div class="card-block"></div>
+          <img
+            *ngIf="user.photoUrl"
+            class="card-img-top img-responsive photo"
+            src="{{ user.photoUrl }}"
+          />
+          <div class="card-block">
+            <h4 class="card-title">{{ user.name }}</h4>
+            <p class="card-text">{{ user.email }}</p>
+            <p class="card-text">Logged in with {{ user.provider }}</p>
+          </div>
+          <div class="card-block">
+            <button class="btn btn-danger" (click)="signOut()">Sign out</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 

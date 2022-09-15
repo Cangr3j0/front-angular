@@ -14,3 +14,14 @@
     color: red;
     margin-bottom: 5rem;
 }
+::ng-deep .asl-google-signin-button{
+
+    /*Add your custom css property value.*/
+    background-color: red;
+    width: 300px;
+    height: 300px;
+    }
+    .nsm7Bb-HzV7m-LgbsSe Bz112c-LgbsSe pSzOP-SxQuSe i5vt6e-Ia7Qfc uaxL4e-RbRzK{
+        width: 400px;
+        height: 400px;
+    }

@@ -1,10 +1,9 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpHandler, HttpInterceptor, HttpRequest, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserListComponent } from './user-list/user-list.component';
 import { UsuarioServiceService } from './usuario-service.service';
 import { ListaNoticiasComponent } from './lista-noticias/lista-noticias.component';
@@ -20,9 +19,20 @@ import {
   FacebookLoginProvider
 } from '@abacritt/angularx-social-login';
 import { ComentarioComponent } from './comentario/comentario.component';
+import { GuardarNoticiaComponent } from './guardar-noticia/guardar-noticia.component';
+import { FormsModule }   from '@angular/forms';
+import { LikesComponent } from './likes/likes.component';
+import { AgregarComentarioComponent } from './agregar-comentario/agregar-comentario.component';
+import { NgModule } from '@angular/core';
+import { AppService } from './app.service';
+import { XhrInterceptor } from './xhr.interceptor';
+import { BasicauthInterceptor } from './basicauth.interceptor';
 
-
-const appRoutes : Routes=[{path:'login',component:LoginComponent},{path:'',component:ListaNoticiasComponent}];
+const appRoutes : Routes=[
+{path:'login',component:LoginComponent},
+{path:'',component:ListaNoticiasComponent},
+{path:'noticia/:id',component:NoticiaComponent},
+{path:'publicar',component:GuardarNoticiaComponent}];
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +41,10 @@ const appRoutes : Routes=[{path:'login',component:LoginComponent},{path:'',compo
     NoticiaComponent,
     LoginComponent,
     BusquedaComponent,
-    ComentarioComponent
+    ComentarioComponent,
+    GuardarNoticiaComponent,
+    LikesComponent,
+    AgregarComentarioComponent
   ],
   imports: [
     BrowserModule,
@@ -40,9 +53,10 @@ const appRoutes : Routes=[{path:'login',component:LoginComponent},{path:'',compo
     HttpClientModule,
     CommonModule,
     RouterModule.forRoot(appRoutes),
-    SocialLoginModule
+    SocialLoginModule,
+    FormsModule
   ],
-  providers: [UsuarioServiceService,NoticiaService, {
+  providers: [UsuarioServiceService, AppService,{ provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true },{ provide: HTTP_INTERCEPTORS, useClass: BasicauthInterceptor, multi: true },NoticiaService, {
     provide: 'SocialAuthServiceConfig',
     useValue: {
       autoLogin: true,
@@ -52,10 +66,6 @@ const appRoutes : Routes=[{path:'login',component:LoginComponent},{path:'',compo
           provider: new GoogleLoginProvider(
             '358663772718-7ml94g69u9bg6g2knobbgpof2j0snrnv.apps.googleusercontent.com'
           )
-        },
-        {
-          id: FacebookLoginProvider.PROVIDER_ID,
-          provider: new FacebookLoginProvider('dc2ae0ad2e73769bd3b794ac23fe9c98')
         }
       ],
       onError: (err) => {

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { asyncScheduler } from 'rxjs';
-import { Noticia } from '../noticia';
+import { Noticia } from '../clases/noticia';
 import { NoticiaService } from '../noticia.service';
-import { Usuario } from '../usuario';
+import { Usuario } from '../clases/usuario';
 
 @Component({
   selector: 'app-lista-noticias',
@@ -21,10 +21,6 @@ export class ListaNoticiasComponent implements OnInit {
     this.noticiaService.findAll().subscribe(data =>{
       this.noticias=data;
       console.log(data);
-    })
-     this.noticiaService.findByid(1).subscribe(data=>{
-      this.noticia=data;
-      console.log('data from noticias: '+this.noticia.autor.name);
     })
   }
   printAutor(autor:any){

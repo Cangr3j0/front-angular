@@ -27,12 +27,14 @@
           <a (click)="buscar(invocadortexto)"
             class="link mx-2 ms-n3">
             <i class="fa-solid fa-magnifying-glass"></i><span>Buscar</span>
+            <span>{{user}}</span>
         </a>
         <a href="" class="link">Test</a>
       </div>
     </span>
     <span class="w-auto ms-auto">
-      <a routerLinkActive="active" routerLink="/login" class="ms-auto link">Login</a>
+      <a *ngIf="!authenticated()" routerLink="/login" class="ms-auto link">Login</a>
+      <a *ngIf="authenticated()" class="ms-auto link">Usuario: {{usuario}}</a>
     </span>
   </div>
   <div class="row d-flex justify-content-center">
@@ -66,42 +68,6 @@
   <div class="row">
     <div class="col-xl-12 bg-dark h-auto fondo my-5">
       <router-outlet></router-outlet>
-      <asl-google-signin-button type='icon' size='medium'></asl-google-signin-button>
-      <div class="jumbotron bg-transparent text-center">
-        <div *ngIf="!user" class="card text-center">
-          <h6 class="card-header">Social Login Demo</h6>
-          <div class="card-block">
-            <h4 class="card-title">Not signed in</h4>
-            <p class="card-text">Sign in with</p>
-          </div>
-          <div class="card-block d-flex justify-content-center">
-            <asl-google-signin-button class="mx-1"></asl-google-signin-button>
-            <button
-              class="btn btn-social-icon btn-facebook mx-1"
-              (click)="signInWithFB()"
-            >
-              <span class="fab fa-facebook"></span>
-            </button>
-          </div>
-        </div>
-        <div *ngIf="user" class="card text-center">
-          <h6 class="card-header">Social Login Demo</h6>
-          <div class="card-block"></div>
-          <img
-            *ngIf="user.photoUrl"
-            class="card-img-top img-responsive photo"
-            src="{{ user.photoUrl }}"
-          />
-          <div class="card-block">
-            <h4 class="card-title">{{ user.name }}</h4>
-            <p class="card-text">{{ user.email }}</p>
-            <p class="card-text">Logged in with {{ user.provider }}</p>
-          </div>
-          <div class="card-block">
-            <button class="btn btn-danger" (click)="signOut()">Sign out</button>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </div>
