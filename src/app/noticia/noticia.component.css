@@ -1,0 +1,12 @@
+.bordearriba{
+    border-top: #e8cba7 solid 6px;
+}
+.contenido-noticia{
+    text-transform: none;
+    text-align: center;
+}
+.fondo-noticia{
+    background: url("https://pm1.narvii.com/6209/e5fe49ffaa3cbc598f9c403f3de0eeef8fcbb597_hq.jpg");
+    background-repeat: no-repeat;
+    background-size: 20%;
+  }

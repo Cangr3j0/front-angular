@@ -1,1 +1,29 @@
-<p>noticia works!</p>
+<div class="col-md-12 bg-white justify-content-center mx-auto bordearriba my-auto fondo-noticia">
+    <div class="row titulo-noticia my-5">
+        <h5>{{noticia.titulo}}</h5>
+    </div>
+    <div class="row titulo-noticia my-2">
+        <h5 class="text-muted">Fecha de publicación {{noticia.fecha_creacion}}</h5>
+    </div>
+    <div class="row contenido-noticia">
+        <h3 class="contenido-noticia">{{noticia.contenido}}</h3>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-5">
+            <app-likes></app-likes>
+        </div>
+        <div class="col-md-5">
+            <i class="fa-solid fa-comment"></i>
+            Comentarios
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                <app-agregar-comentario></app-agregar-comentario>
+            </div>
+        </div>
+        <app-comentario></app-comentario>
+
+    </div>
+</div>
+{{id}}

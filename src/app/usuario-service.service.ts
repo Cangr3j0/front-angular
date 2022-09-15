@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Usuario } from './usuario';
+import { Usuario } from './clases/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +19,8 @@ export class UsuarioServiceService {
   }
   public save(user: Usuario) {
     return this.http.post<Usuario>(this.usersUrl, user);
+  }
+  public findById(id:number):Observable<Usuario>{
+    return this.http.get<Usuario>(this.usersUrl+'/'+id);
   }
 }

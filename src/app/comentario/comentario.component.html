@@ -1,1 +1,9 @@
-<p>comentario works!</p>
+<div class="row d-flex justify-content-start">
+    <div class="col">
+<p *ngFor="let comentario of comentarios">
+    {{comentario.fecha_creacion}}
+    {{comentario.contenido}}
+    {{comentario.autor.nombre}}
+</p>
+</div>
+</div>
