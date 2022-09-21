@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  credentials = {username: '', password: ''};
+  username:any;
+  password:any;
   user: SocialUser;
   loggedIn: boolean;
   constructor(private authService: SocialAuthService,private app:AppService,private router: Router) { }
@@ -29,7 +30,7 @@ export class LoginComponent implements OnInit {
     this.authService.signOut();
   }
   login() {
-    this.app.authenticate(this.credentials, () => {
+    this.app.authenticate(this.username,this.password, () => {
       this.router.navigateByUrl('/');
   });
   return false;

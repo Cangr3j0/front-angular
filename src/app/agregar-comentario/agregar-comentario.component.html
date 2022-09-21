@@ -1,1 +1,6 @@
-<textarea cols="100%" rows="4"></textarea>
+<form (submit)="postearComentario()">
+   <textarea [(ngModel)]="contenido" name="contenido"> cols="100%" rows="4">
+
+</textarea> 
+<button type="submit">Publicar comentario</button>
+</form>

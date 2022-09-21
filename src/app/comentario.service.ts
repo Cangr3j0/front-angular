@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Comentario } from './clases/comentario';
 
 @Injectable({
@@ -8,14 +8,24 @@ import { Comentario } from './clases/comentario';
 })
 export class ComentarioService {
   private url="http://localhost:8080/comentarios/"
+  respuesta: Comentario;
+  public readonly comentariosObserver:BehaviorSubject<Comentario[]>=new BehaviorSubject<Comentario[]>([]);
   constructor(private http:HttpClient) { 
 
   }
 
-  public findByid(id:string):Observable<Comentario[]>{
-    return this.http.get<Comentario[]>(this.url+id);
+  public findByid(id:string){
+    this.http.get<Comentario[]>(this.url+id).subscribe(data =>{
+      this.comentariosObserver.next(data);
+    });
   }
   public cantComentariosById(id:string):Observable<number>{
     return this.http.get<number>(this.url+"cantidad/"+id);
+  }
+  public postCommentary(comentario:string,idnoticia:string):Observable<Comentario>{
+   return this.http.post<Comentario>(this.url+idnoticia,comentario);
+  }
+  get getComentarios():Observable<Comentario[]>{
+    return this.comentariosObserver.asObservable();
   }
 }
