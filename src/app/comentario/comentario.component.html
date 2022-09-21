@@ -1,6 +1,13 @@
+<form (submit)="postearComentario()">
+    <textarea [(ngModel)]="contenido" name="contenido"> cols="100%" rows="4">
+ 
+ </textarea> 
+ <button type="submit">Publicar comentario</button>
+ </form>
+
 <div class="row d-flex justify-content-start">
     <div class="col">
-<p *ngFor="let comentario of comentarios">
+<p *ngFor="let comentario of comentarios | async">
     {{comentario.fecha_creacion}}
     {{comentario.contenido}}
     {{comentario.autor.nombre}}

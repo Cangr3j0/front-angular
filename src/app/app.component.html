@@ -19,22 +19,36 @@
 -->
 
 <div class="container-fluid w-100 text-center fondo">
-  <div class="row bordes d-flex align-items-center fila text-center"> <a routerLinkActive="active" routerLink="" class="w-auto link">Jugadores Bahía Blanca</a>
+  <div class="row bordes d-flex align-items-center fila text-center"> <a routerLinkActive="active" routerLink=""
+      class="w-auto link">Jugadores Bahía Blanca</a>
     <span class="w-25">
       <div class="input-group d-flex align-items-center">
         <input (keyup.enter)="buscar(invocadortexto)" #invocadortexto id="invocadortexto" name="invocadortexto" ngModel
           class="form-control border-end-0 bordes" type="text" placeholder="buscar invocador" id="example-search-input">
-          <a (click)="buscar(invocadortexto)"
-            class="link mx-2 ms-n3">
-            <i class="fa-solid fa-magnifying-glass"></i><span>Buscar</span>
-            <span>{{user}}</span>
+        <a (click)="buscar(invocadortexto)" class="link mx-2 ms-n3">
+          <i class="fa-solid fa-magnifying-glass"></i><span>Buscar</span>
         </a>
         <a href="" class="link">Test</a>
       </div>
     </span>
     <span class="w-auto ms-auto">
-      <a *ngIf="!authenticated()" routerLink="/login" class="ms-auto link">Login</a>
-      <a *ngIf="authenticated()" class="ms-auto link">Usuario: {{usuario}}</a>
+      <div class="dropdown">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"
+          *ngIf="!authenticated()" routerLink="/login" class="ms-auto link">Login</a>
+        <button class="ms-auto link btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
+          *ngIf="authenticated()">Usuario: {{usuario}}</button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><h6 class="dropdown-header"><i class="fa-solid fa-user"></i> Mi Perfil</h6></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gear"></i> Mi cuenta</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-right-from-bracket"></i> Desconectar</a></li>
+          </ul>
+      </div>
     </span>
   </div>
   <div class="row d-flex justify-content-center">
@@ -62,7 +76,7 @@
   </div>
 
 
-<!--body-->
+  <!--body-->
 
 
   <div class="row">
@@ -71,4 +85,3 @@
     </div>
   </div>
 </div>
-

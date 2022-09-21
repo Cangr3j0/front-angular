@@ -30,10 +30,10 @@ export class AppComponent implements OnInit {
   public test:string="asd";
   constructor(public invocadorService: InvocadorService,private route: ActivatedRoute,
     private authService: SocialAuthService,private app:AppService) {
-      this.app.authenticate(undefined,undefined);
+      this.app.authenticate(undefined,undefined,undefined);
   }
   authenticated() { 
-    return this.app.isUserLoggedIn; 
+    return this.app.isUserLoggedIn(); 
   }
 
   ngOnInit() {
@@ -47,7 +47,6 @@ export class AppComponent implements OnInit {
     });
     if(this.authenticated){
       this.usuario=sessionStorage.getItem('username');
-      console.log(this.app.getUsuario());
     }
   }
   buscar(invocadortexto: HTMLInputElement) {
