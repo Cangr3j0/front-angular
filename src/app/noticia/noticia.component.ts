@@ -33,5 +33,6 @@ export class NoticiaComponent implements OnInit {
     })
   }
   
+  
 
 }

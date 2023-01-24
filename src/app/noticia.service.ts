@@ -1,15 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { Noticia } from './clases/noticia';
-
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class NoticiaService {
   private noticiaUrl:string;
   constructor(private http:HttpClient) {
-    this.noticiaUrl="http://localhost:8080/noticias";
+    this.noticiaUrl=environment.serverUrl+"/noticias";
    }
    public findAll():Observable<Noticia[]>{
     return this.http.get<Noticia[]>(this.noticiaUrl);
@@ -22,7 +22,10 @@ export class NoticiaService {
     //En el post la noticia que se pasa por parametro debe ser pasada a json sino retorna error
     //Unrecognized token etc.
     const body=JSON.stringify(noticia);
-    return this.http.post<Noticia>(this.noticiaUrl,body,httpOptions);
+    return this.http.post<Noticia>(this.noticiaUrl,body,httpOptions).pipe(catchError(err => {
+      console.log('There was an error getting data: '+err);
+      return throwError(err);
+    }));
    }
    public findByid(noticia:string):Observable<Noticia>{
     return this.http.get<Noticia>(this.noticiaUrl+'/'+noticia);

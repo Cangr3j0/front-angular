@@ -1,5 +1,7 @@
+import { Observable } from "rxjs";
+
 export class Usuario {
-    id: number;
-    name: string;
-    email: string;
+    nombre: string;
+    password: string;
+    email:string;
 }

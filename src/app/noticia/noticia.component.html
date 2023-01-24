@@ -1,9 +1,17 @@
-<div class="col-md-12 bg-white justify-content-center mx-auto bordearriba my-auto fondo-noticia">
+<div class="container">
+<div class="row">
+<div class="col-md-10 bg-white justify-content-center mx-auto bordearriba my-auto">
+    <div class="row imagen-noticia my-5 justify-content-center">
+       <img width="60%"  class="img-fluid img-noticia" src="http://vignette2.wikia.nocookie.net/leagueoflegends/images/f/f3/Default_Profile_Banner.png/revision/latest?cb=20131202032016">
+    </div>
     <div class="row titulo-noticia my-5">
-        <h5>{{noticia.titulo}}</h5>
+        <h5 class="fw-bold text-uppercase">{{noticia.titulo}}</h5>
     </div>
     <div class="row titulo-noticia my-2">
         <h5 class="text-muted">Fecha de publicación {{noticia.fecha_creacion}}</h5>
+    </div>
+    <div class="row titulo-noticia my-2">
+        <h5 class="text-muted">Autor {{noticia.autor.nombre}}</h5>
     </div>
     <div class="row contenido-noticia">
         <h3 class="contenido-noticia">{{noticia.contenido}}</h3>
@@ -14,11 +22,11 @@
             <app-likes></app-likes>
         </div>
         <div class="col-md-5">
-            <i class="fa-solid fa-comment"></i>
+            <i class="fa-solid fa-comments"></i>
             Comentarios
         </div>
         <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-10 justify-content-center mx-auto">
                 <app-comentario></app-comentario>
                 <!--<app-agregar-comentario></app-agregar-comentario>-->
             </div>
@@ -27,4 +35,5 @@
 
     </div>
 </div>
-{{id}}
+</div>
+</div>

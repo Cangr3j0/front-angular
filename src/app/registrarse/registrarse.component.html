@@ -1,0 +1,30 @@
+<div class="container d-flex align-items-middle justify-content-center">
+<form class="formcolor" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <label for="usernameLabel" class="form-label">Nombre de usuario</label>
+        <input type="text" formControlName="nombre" class="form-control" id="usernameLabel" [ngClass]="{ 'is-invalid text-danger': submitted && form.get('nombre').errors }" >
+        <div *ngIf="form.get('nombre').errors?.['required'] && form.get('nombre').value!=''">El nombre de usuario no debe ser vacio.</div>
+        <label *ngIf="form.get('nombre').invalid">Debe al menos contener 2 caracteres</label>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [ngClass]="{ 'is-invalid text-danger': submitted && form.get('email').errors }">
+      <label *ngIf="form.get('email').invalid">Ingrese un mail valido</label>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" formControlName="password" class="form-control" id="passwordInputId" [ngClass]="{ 'is-invalid text-danger': submitted && form.get('password').errors }">
+      <label *ngIf="form.get('password').invalid">La password debe tener al menos 6 caracteres.</label>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Confirmar password</label>
+      <input type="password" formControlName="confirmPassword" class="form-control" id="passwordConfirmInputId" [ngClass]="{ 'is-invalid text-danger': submitted && form.get('confirmPassword').errors }">
+      <label *ngIf="form.get('confirmPassword').errors?.['NotConfirmedPassword']">Las passwords no coinciden</label>
+    </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox"formControlName="checkCondiciones" class="form-check-input" id="exampleCheck1" [ngClass]="{ 'is-invalid': submitted && form.get('checkCondiciones').errors }">
+      <label class="form-check-label" for="exampleCheck1">He leído y acepto los terminos y condiciones.</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

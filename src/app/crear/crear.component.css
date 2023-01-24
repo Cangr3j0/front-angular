@@ -1,0 +1,50 @@
+*{
+    font-family: Lato,Helvetica Neue,helvetica,sans-serif;
+    text-transform:none;
+    color: white;
+}
+
+::ng-deep .popover-header {
+    color: white !important;
+    font-size: 20px;
+    background-color: black;
+}
+::ng-deep .popover-body {
+    color: white;
+    font-size: 13px;
+    background-color: black;
+}
+::ng-deep .my-custom-class .popover-header{
+    background-color: black;
+    color:white;
+    --main-bg-color: brown;
+}
+.negro{
+    background-color: black;
+    color:white;
+}
+::ng-deep .popover{
+    --bs-popover-header-bg: #ef2b2b;
+}
+.img .bordercampeon:hover{
+    border: 2px solid yellow;
+}
+.img .bordercampeon:active{
+    border: 2px solid yellow;
+}
+.campeones{
+    transition: all 2s;
+}
+.campeonMostrado{
+    transition: all 2s;
+}
+.itemsAnimacion{
+    transition: all 2s;
+}
+.hrr{
+    height: 2px;
+    background-color: white;
+}
+hr{
+    opacity: 1 !important;
+}

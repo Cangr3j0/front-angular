@@ -1,0 +1,99 @@
+<div class="container-fluid bg-dark" id="container">
+    <div class="row justify-content-center">
+        <div class="col">
+            <img src="../assets/imagenes/lol_icon_example.jpg" width="60px" height="60px" alt="">
+        <div class="row mt-2"><a href=""><i class="fa-brands fa-twitch"></i> /kurolo</a></div>
+        </div>
+        <div class="col border">Rol mas usado <div class="row justify-content-center align-items-center mt-4"><img
+                    class="img-champ" src="../assets/imagenes/Bot_icon40x40.png"> Adc</div>
+        </div>
+        <div class="col border">Campeon mas usado
+            <div class="row borde-left justify-content-center align-items-center"><img class="rounded-circle img-champ"
+                    src="https://www.mobafire.com/images/champion/square/ezreal.png" alt="">Ezreal</div>
+            <div class="row justify-content-center align-items-center"><img class="rounded-circle img-champ"
+                    src="https://lolstatic-a.akamaihd.net/frontpage/apps/prod/kaisa-reveal/es_ES/4b3ba0751b18398c0fe8d339207ba00a26309de1/assets/img/content/wallpaper/base-icon.jpg"
+                    alt="">Kaisa</div>
+        </div>
+        <div class="col border justify-content-center">Maestria de campeon <div
+                class="row borde-left justify-content-center img-champ">15155115 Puntos</div>
+            <div class="row justify-content-center" style="height: 60px;">245487 Puntos</div>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col"></div>
+        <div class="col">Adc</div>
+        <div class="col"></div>
+        <div class="col">Maestria de campeon</div>
+    </div>
+    <div class="row">
+        <div class="col">Historial de partidas</div>
+        <div class="row mt-2"></div>
+        <hr>
+        <div *ngFor="let partida of infomapa; let i = index">
+            <div class="row">
+                <ng-container *ngFor="let participante of partida.participantes">
+                    <div class="visibleornot d-flex" *ngIf="participante.summonerName==='shinradalila'">
+                <div class="col">Clasificatoria Solo Q</div>
+                <div class="col">
+                    <div class="row">
+                                <div class="col"><img class="imgchamprounded"
+                                    src="https://cdn.communitydragon.org/12.6.1/champion/{{participante.championId}}/square"></div>
+                                <div class="col">Hechizos de campeon</div>
+                                <div class="col">Score</div>
+                    </div>
+                    <div class="row">Items comprados</div>
+                </div>
+                <div class="col">Wards|Cs|Daño</div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col-6">
+                            <div *ngFor="let participante of partida.participantes |slice:0:5;">
+                                <div class="row">
+                                    <img class="imgchampid"
+                                        src="https://cdn.communitydragon.org/12.6.1/champion/{{participante.championId}}/square">
+                                    <div class="div-content">{{participante.summonerName}}</div>
+                                    <div class=""><span class="y-barra">{{participante.kills}}</span> | <span
+                                            class="text-danger">{{participante.deaths}}</span> | <span
+                                            class="text-info">{{participante.assists}}</span></div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div *ngFor="let participante of partida.participantes |slice:5:10;">
+                                <div class="row">
+                                    <img class="imgchampid"
+                                        src="https://cdn.communitydragon.org/12.6.1/champion/{{participante.championId}}/square">
+                                    <div class="div-content">{{participante.summonerName}}</div>
+                                    <div class=""><span class="y-barra">{{participante.kills}}</span> | <span
+                                            class="text-danger">{{participante.deaths}}</span> | <span
+                                            class="text-info">{{participante.assists}}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                                [attr.data-bs-target]="'#collapse'+partida.matchid" aria-expanded="false"
+                                aria-controls="collapseExample">
+                                <img src="https://s-lol-web.op.gg/images/icon/icon-arrow-down-red.svg?v=1669193732710"
+                                    width="24" alt="More" height="24">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+            </div>
+            <div class="row">
+                <div class="collapse" id="collapse{{partida.matchid}}">
+                    <div class="">
+                        Some placeholder content for the collapse component. This panel is hidden by default but
+                        revealed when the user activates the relevant trigger.
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+
+
+    </div>

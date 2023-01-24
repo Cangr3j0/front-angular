@@ -1,16 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 @font-face {
-    font-family: "Gonero";
-    src: url(./assets/fonts/ncc1701a.ttf) format("opentype");
+    font-family: "OpenSans";
+    src: url(./assets/fonts/OpenSans-Italic.ttf) format("opentype");
 }
 *{
-    font-family: "Gonero";
+    font-family: "OpenSans";
     font-size: 14px;
-    text-transform: uppercase;
+    box-sizing: border-box;
+    
 }
 html,body {
-  padding:0; margin:0;
-    height: 100%;
+  padding : 0px !important;
+  margin:0 !important;
+  height: 100%;
     
   }
   footer{width: 100%;height: 200px;}
@@ -24,7 +26,7 @@ table td th input {
     font-size: 9px;
   }
   .fondo{
-    background: url("https://www.team-aaa.com/upload/admin/LoL/PBE/12.1/3.jpg");
+    background: url("https://cdna.artstation.com/p/assets/images/images/045/739/830/large/terence-cantal-season-start-key-art.jpg?1660588098");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -36,6 +38,7 @@ table td th input {
     color: rgb(247, 0, 0);
     background-color: #00b3db;
     border-color: #285e8e; /*set the color you want here*/
+
 }
 table.speaker-list {
     table-layout: fixed;
@@ -44,10 +47,10 @@ table.speaker-list {
   height: 100px;
 }
 .fa-square-facebook, .fa-square-instagram{
-  font-size: 25px;
+  font-size: 40px;
 }
 .fa-square-facebook:hover, .fa-square-instagram:hover{
-  font-size: 25px;
+  font-size: 40px;
   color:#e92f40;
 }
 .fila{
@@ -57,3 +60,7 @@ table.speaker-list {
 }
 :focus {outline:none;}
 ::-moz-focus-inner {border:0;}
+
+#content {
+  height: 2000px;
+}
