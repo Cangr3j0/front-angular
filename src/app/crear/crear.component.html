@@ -1,0 +1,55 @@
+<div class="container-fluid">
+    <h2>Crear Guia de campeón</h2>
+
+<hr class="hrr">
+
+
+    <div class="row">
+        <div class="col-4">
+            <h3 *ngIf="!seleccionado">Seleccione un campeón</h3>
+            <div class="campeonMostrado" *ngIf="campeonSeleccionado" [style.transform]="seleccionado?'translateX(100%)':''">
+                <h4>Has seleccionado {{campeonSeleccionado.name}}</h4>
+                <img class="img-fluid" style="width: 170px;" src="https://cdn.communitydragon.org/12.6.1/champion/{{campeonSeleccionado.key}}/portrait">
+                <div class="row justify-content-center align-items-center">
+                    <img style="width: 44px;height: 44px;" src="">
+                    <img style="width: 44px;height: 44px;" src="">
+                    <img style="width: 44px;height: 44px;" src="">
+                    <img style="width: 44px;height: 44px;" src="">
+                </div>
+            </div>
+
+        </div>
+        <!--[campeonSeleccionado]="campeon" (campeonEvent)="seleccionarCampeon($event)"
+        [campeonSeleccionado]="campeon"  es el input de shadowdirective, osea el campeon seleccionado se guarda
+        en la variable input campeonSeleccionado.
+        En shadowDirective.ts veremos  this.campeonEvent.emit(this.campeonSeleccionado); esto emite el output del campeon seleccionado
+        Para poder atrapar el campeon desde otro componente (campeonEvent)="seleccionarCampeon($event)"
+        donde campeonEvent es el emitter con el @Output y "seleccionarCampeon($event)" es la funcion en el
+        componente
+        -->
+        <div class="col-8 campeones mb-3" [ngStyle]="{'pointer-events': seleccionado ? 'none' : 'inherit'}" [style.opacity]="seleccionado? '0' : '1'" [style.visibility]="seleccionado ? 'hidden' : 'visible'" [style.transform]="seleccionado ? 'translateX(20%)':''">
+            <div class="d-inline-block" *ngFor="let campeon of campeones" style="margin: 2px;">
+                <ng-template class="negro" #popContent>{{campeon.title}}</ng-template>
+                <ng-template class="negro" #popTitle>{{campeon.name}}</ng-template>
+                <img  [ngbPopover]="popContent" [popoverTitle]="popTitle" popoverClass="my-custom-class"
+                triggers="mouseenter:mouseleave" appShadow [clicked]="false" [campeonSeleccionado]="campeon" (campeonEvent)="seleccionarCampeon($event)" style="width: 46px;height: 46px;"
+                src="/assets/imagenes/campeones/{{campeon.key}}.png">
+            </div>
+        </div>
+    </div>
+
+    <button class="btn-primary mb-3" *ngIf="campeonSeleccionado && !seleccionado" (click)="seleccionar()">Seleccionar Campeon</button>
+    <button class="btn-primary mb-3" *ngIf="campeonSeleccionado && seleccionado" (click)="elegirOtraVez()">Elegir otro campeon</button>
+    
+    <div #itemsScroll class="row itemsAnimacion mb-3" [style.opacity]="!seleccionado? '0' : '1'" [style.visibility]="!seleccionado ? 'hidden' : 'visible'" [style.transform]="!seleccionado ? 'translateY(80%)':''">
+        <div class="col-12">
+            <div class="d-inline-block" *ngFor="let item of items;let i=index" style="margin: 2px;">
+                <ng-template class="negro" #popContent>{{item.description}}</ng-template>
+                <ng-template class="negro" #popTitle>{{item.name}}</ng-template>
+                <img [ngbPopover]="popContent" [popoverTitle]="popTitle" popoverClass="my-custom-class"
+                    triggers="mouseenter:mouseleave" appItem [clicked]="false" [itemSeleccionado]="item" style="width: 28px;height: 28px;"
+                    src="https://ddragon.leagueoflegends.com/cdn/12.23.1/img/item/{{item.image.full}}">
+            </div>
+        </div>
+    </div>
+</div>

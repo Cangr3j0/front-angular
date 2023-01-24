@@ -1,19 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Invocador, InvocadorService } from './invocador.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { SocialAuthService, SocialUser } from "@abacritt/angularx-social-login";
 import { FacebookLoginProvider } from "@abacritt/angularx-social-login";
 import { AppService } from './app.service';
 import { Usuario } from './clases/usuario';
+
+declare var $: any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  usuario:string;
+  public usuarioObserver:Observable<Usuario>;
+  public usuario:Usuario;
+  public nombreUsuario$:Observable<string>;
+  public nameUser:string;
   user: SocialUser;
   loggedIn: boolean;
   title = 'lolweb';
@@ -28,9 +33,8 @@ export class AppComponent implements OnInit {
   public error = false;
   public mensajeError : string;
   public test:string="asd";
-  constructor(public invocadorService: InvocadorService,private route: ActivatedRoute,
+  constructor(public invocadorService: InvocadorService,private route: ActivatedRoute,public router: Router,
     private authService: SocialAuthService,private app:AppService) {
-      this.app.authenticate(undefined,undefined,undefined);
   }
   authenticated() { 
     return this.app.isUserLoggedIn(); 
@@ -45,8 +49,14 @@ export class AppComponent implements OnInit {
       this.user = user;
       this.loggedIn = (user != null);
     });
+
+    console.log("usuarioo1: "+this.usuarioObserver);
     if(this.authenticated){
-      this.usuario=sessionStorage.getItem('username');
+      this.app.getUserSession();
+      this.nombreUsuario$=this.app.getUsuarioSession;
+      this.nombreUsuario$.subscribe(data=>{
+        this.nameUser=data;
+      })
     }
   }
   buscar(invocadortexto: HTMLInputElement) {
@@ -91,5 +101,12 @@ export class AppComponent implements OnInit {
 
   signOut(): void {
     this.authService.signOut();
+  }
+  desconectar():void{
+    sessionStorage.removeItem('username');
+    sessionStorage.removeItem('token');
+    this.app.setAuthenticated(false);
+    this.usuario=null;
+   // this.router.navigate(['/login'])
   }
 }

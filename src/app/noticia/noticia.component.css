@@ -4,9 +4,17 @@
 .contenido-noticia{
     text-transform: none;
     text-align: center;
+    padding: 40px;
 }
 .fondo-noticia{
     background: url("https://pm1.narvii.com/6209/e5fe49ffaa3cbc598f9c403f3de0eeef8fcbb597_hq.jpg");
     background-repeat: no-repeat;
     background-size: 20%;
   }
+  body{
+    font-size: 1.375rem;
+    text-transform:none;
+}
+.img-noticia{
+    width: 70%;
+}

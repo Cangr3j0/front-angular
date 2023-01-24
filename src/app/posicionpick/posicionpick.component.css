@@ -1,0 +1,32 @@
+*{color: white;}
+.borde{
+    border: 2px solid rgba(244, 247, 42, 0.37);
+    width: 100%;
+    opacity: 1;
+    transition: width 0.2s, opacity 0.2s,box-shadow 0.2s;
+
+}
+.bordes-col{
+    border: 1px solid #97976769;
+}
+.col:hover .borde{
+    background-color: rgba(253, 249, 0, 0.61);
+}
+input[type=checkbox]{
+    display: none;
+}
+input:checked + label::before{
+    content: "";
+
+}
+input:checked ~ * .borde{
+    background-color: rgba(253, 249, 0, 0.61);
+    box-shadow: 2px 0px 32px 12px rgba(224,230,3,0.69);
+    -webkit-box-shadow: 2px 0px 32px 12px rgba(224,230,3,0.69);
+    -moz-box-shadow: 2px 0px 32px 12px rgba(224,230,3,0.69);
+    background: linear-gradient(to right,var(--team-color,#00c8c8) 0,#000 70%);
+    opacity: 1;
+}
+input:checked ~ * .image{
+
+}

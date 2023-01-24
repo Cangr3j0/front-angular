@@ -27,5 +27,5 @@ private comentarios:ComentarioComponent;
   postearComentario(){
     let nuevoComentario:Comentario;
     console.log(this.contenido);
-this.comentarioService.postCommentary(this.contenido,this.idNoticia);
+this.comentarioService.postCommentary(this.contenido,this.idNoticia).subscribe();
 }}

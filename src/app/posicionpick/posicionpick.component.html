@@ -1,0 +1,16 @@
+<div class="container d-block align-items-center text-center justify-content-center">
+<div class="row"><p>Selecciona tu posición</p></div> 
+<div class="row">
+    
+    <ng-container *ngFor="let position of positions">
+        <input id="test" name="test" type="checkbox"/>
+        <label @aparecer for="test" class="col bordes-col" (mouseout)="position.image" (mouseover)="position.imageActive"><img class="image" width="60px" height="60px" [src]="position.imageActive"><div class="borde">{{position.nombre}}</div></label>
+    </ng-container>
+    <input id="test" name="test" type="checkbox"/>
+    <label @aparecer for="test" class="col bordes-col" (mouseout)="imgSrcTop = '../assets/imagenes/Top_icon.png'" (mouseover)="imgSrcTop = '../assets/imagenes/Top_icon_active.png'"><img class="image" width="60px" height="60px" [src]="imgSrcTop"><div class="borde">Top</div></label>
+    <div class="col bordes-col"><img width="60px" height="60px" src="../assets/imagenes/Jungle_icon.png"><div class="borde2">Jungla</div></div>
+    <div class="col"><img width="60px" height="60px" src="../assets/imagenes/Mid_icon.png"><div class="borde3">Mid</div></div>
+    <div class="col"><img width="60px" height="60px" src="../assets/imagenes/Bot_icon.png"><div class="borde4">Adc</div></div>
+    <div class="col"><img width="60px" height="60px" src="../assets/imagenes/Support_icon.png"><div class="borde5">Support</div></div>
+</div>
+</div>

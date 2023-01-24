@@ -1,0 +1,14 @@
+.table{
+    table-layout:fixed;
+}
+.table td{
+    word-wrap:break-word;
+
+}
+div.scrollable{
+    width: 200px;
+    text-overflow: ellipsis;
+    word-wrap:break-word;
+    overflow: hidden;
+    white-space: nowrap;
+}

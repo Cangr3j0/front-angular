@@ -3,6 +3,9 @@ import { asyncScheduler } from 'rxjs';
 import { Noticia } from '../clases/noticia';
 import { NoticiaService } from '../noticia.service';
 import { Usuario } from '../clases/usuario';
+import { Autor } from '../clases/autor';
+import { AppService } from '../app.service';
+import { UsuarioServiceService } from '../usuario-service.service';
 
 @Component({
   selector: 'app-lista-noticias',
@@ -12,8 +15,10 @@ import { Usuario } from '../clases/usuario';
 export class ListaNoticiasComponent implements OnInit {
   noticias:Noticia[];
   noticia:Noticia;
-  autor:Usuario;
-  constructor(private noticiaService:NoticiaService) { 
+  autor:Autor;
+  format:string ="dd/MM/yyyy";
+  lastusers:Usuario[];
+  constructor(private usersService:UsuarioServiceService,private noticiaService:NoticiaService,private app:AppService) { 
 
   }
 
@@ -21,10 +26,16 @@ export class ListaNoticiasComponent implements OnInit {
     this.noticiaService.findAll().subscribe(data =>{
       this.noticias=data;
       console.log(data);
+    });
+    this.usersService.getLastUsers().subscribe(data=>{
+      this.lastusers=data;
     })
   }
   printAutor(autor:any){
-    return autor.nombre;
+    return this.noticia.autor.nombre;
   }
-
+  authenticated() { 
+    return this.app.isUserLoggedIn(); 
+  }
+  
 }

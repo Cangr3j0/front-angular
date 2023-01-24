@@ -1,0 +1,43 @@
+*{
+    color: white;
+}
+.img-champ{
+    width: 64px;
+}
+#container{
+    position: relative;
+}
+.btn-primary{
+    background-color: #a2daeb;
+}
+.imgchampid{
+    height: 20px;
+    width: 46px;
+}
+.div-content{
+    display: contents;
+}
+.y-barra{
+    color: yellow;
+    margin-right: 2px;
+}
+.text-danger{
+    margin-right: 2px;
+    margin-left: 2px;
+}
+.text-info{
+    margin-right: 2px;
+    margin-left: 2px;
+}
+.visibleornot{
+
+}
+.imgchamprounded{
+    height: 46px;
+    width: 46px;
+    border-radius: 22px;
+}
+a:hover {
+    color: #ff6d6d;
+    background: #0000001a;
+}

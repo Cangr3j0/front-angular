@@ -1,0 +1,10 @@
+#contenido{
+height: 100px;
+}
+.text-justify{
+    text-align: justify;
+}
+.scrollable{
+    overflow: auto;
+    height: 600px;
+}

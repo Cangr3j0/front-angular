@@ -2,12 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Comentario } from './clases/comentario';
-
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class ComentarioService {
-  private url="http://localhost:8080/comentarios/"
+  private url=environment.serverUrl+"/comentarios/"
   respuesta: Comentario;
   public readonly comentariosObserver:BehaviorSubject<Comentario[]>=new BehaviorSubject<Comentario[]>([]);
   constructor(private http:HttpClient) { 

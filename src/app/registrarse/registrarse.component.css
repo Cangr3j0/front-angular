@@ -1,0 +1,16 @@
+*{color: white;
+text-transform: none;
+font-family: Lato,Helvetica Neue,helvetica,sans-serif;
+font-size: 1;
+text-transform:none;}
+.formcolor{
+    background-color:#0000009e;
+    padding: 20px;
+}
+input, select, textarea{
+    color: black;
+}
+
+textarea:focus, input:focus {
+    color: black;
+}

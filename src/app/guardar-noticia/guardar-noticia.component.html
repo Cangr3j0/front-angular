@@ -23,6 +23,8 @@
         </div>
         <button type="submit" [disabled]="!guardarnoticia.form.valid" 
           class="btn btn-info">Submit</button>
+          <h5 *ngIf="error">Debe conectarse para publicar error:{{errorMensaje}}</h5>
+
       </form>
     </div>
   </div>

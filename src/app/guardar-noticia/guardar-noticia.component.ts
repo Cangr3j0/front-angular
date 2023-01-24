@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ErrorBehavior } from '../clases/ErrorBehavior';
 import { Noticia } from '../clases/noticia';
 import { Usuario } from '../clases/usuario';
+import { ErrorService } from '../error.service';
 import { NoticiaService } from '../noticia.service';
 import { UsuarioServiceService } from '../usuario-service.service';
 
@@ -15,20 +17,26 @@ import { UsuarioServiceService } from '../usuario-service.service';
 export class GuardarNoticiaComponent implements OnInit {
   autor:Usuario;
   noticia:Noticia;
-  constructor(private usuarioService:UsuarioServiceService,private noticiaService:NoticiaService, private route:ActivatedRoute,private router:Router) { 
+  error:boolean;
+  errorMensaje:string;
+  errorBehavior:ErrorBehavior;
+  constructor(public errorService:ErrorService,private usuarioService:UsuarioServiceService,private noticiaService:NoticiaService, private route:ActivatedRoute,private router:Router) { 
     this.noticia=new Noticia();
   }
 
   ngOnInit(): void {
-    this.usuarioService.findById(1).subscribe((res: Usuario) => {
-      this.autor = res; this.noticia.autor=this.autor;
-      console.log( this.noticia.autor);
-    });
-    console.log( this.noticia);
+
   }
 
   onSubmit(guardarnoticia:NgForm){
     this.noticiaService.save(this.noticia).subscribe(resultado=>this.irANoticia());
+    this.errorService.getErrorObservable.subscribe(values => {
+      this.errorBehavior=values;
+      console.log("VALOR ERROR BEHAVIOR "+this.errorBehavior.mensajeError);
+
+    this.error=values.hayError;
+     this.errorMensaje=values.mensajeError.error;
+  });
   }
   irANoticia(): void {
     this.router.navigate(['/']);
